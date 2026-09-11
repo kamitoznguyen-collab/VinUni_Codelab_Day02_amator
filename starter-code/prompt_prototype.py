@@ -17,7 +17,9 @@ import os
 import sys
 from typing import Any
 
-GEMINI_MODEL = "gemini-2.5-flash"
+# `gemini-2.5-flash` is unavailable for newly created Gemini API projects.
+# Use the current Flash model reported by the Gemini API instead.
+GEMINI_MODEL = "gemini-3.6-flash"
 
 SYSTEM_PROMPT = """
 You are VinUni Canteen Meal Assistant, a recommendation and draft-order
