@@ -1,0 +1,7 @@
+| # | Subsidiary| Lens | Mô tả ngắn bài toán |
+|---|----------------------------------|------|---------------------|
+| 1 | VinHomes | Lặp lại |Vinhomes yêu cầu cư dân đăng ký và xin phê duyệt phương án thi công trước khi sửa chữa; việc vận chuyển vật liệu cũng bị giới hạn theo khung giờ nhóm lỗi -> chuyển đến kỹ thuật viên (Nhân viên phải đọc hồ sơ, kiểm tra giấy tờ, đối chiếu quy định và yêu cầu cư dân bổ sung nhiều lần.)|
+| 2 |Vinhomes | AI-upgrade | Vinhomes có hệ thống thẻ cư dân, nhận diện biển số và quản lý bãi đỗ xe(Khi biển số không khớp, cư dân mất thẻ, khách đăng ký sai thông tin hoặc xe tạm thời cần vào bãi, nhân viên phải kiểm tra thủ công.) |
+| 3 |Vinmec |Tốn thời gian |Vinhomes có nghĩa vụ tiếp tục sửa chữa hoặc hoàn thiện các hạng mục còn trong thời hạn bảo hành.(Nhân viên phải đọc mô tả, xem ảnh lỗi, xác định hạng mục và chuyển cho đội kỹ thuật hoặc nhà thầu.) |
+| 4 |VinFast |Tốn thời gian|Khách hàng mô tả lỗi xe qua ứng dụng hoặc hotline. Nhân viên dịch vụ phải đọc mô tả, gọi lại hỏi thêm thông tin, xác định loại dịch vụ, chọn xưởng phù hợp và dự đoán phụ tùng cần chuẩn bị.|
+| 5 |Vinmec |Tốn thời gian|Nhân viên tổng đài phải kiểm tra thủ công thông tin người bệnh, chuyên khoa, bác sĩ, cơ sở khám, thời gian mong muốn và các trường thông tin còn thiếu trước khi xác nhận lịch.
