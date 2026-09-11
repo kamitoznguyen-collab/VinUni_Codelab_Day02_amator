@@ -63,11 +63,11 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 ### 📝 List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 1 | Vinhomes                         |Tốn thời gian |Xử lý và phân loại khiếu nại kỹ thuật căn hộ đa kênh |
+| 2 |VinFast                           |Lặp lại  |Đối soát chứng từ và tối ưu hóa bảo hành linh kiện phụ tùng pin điện |
+| 3 |Vinmec |AI-upgrade |Trợ lý số hóa và tóm tắt hồ sơ bệnh án chuyển viện |
+| 4 |Vinpearl |Tốn thời gian & AI-upgrade |Quản lý động giá phòng và dự báo luồng khách tại cổng VinWonders|
+| 5 |Xanh SM |Stakeholder Pain & lặp lại | |
 
 ---
 
@@ -77,24 +77,80 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #___                                     │
+│ QUICK PROBLEM CARD #1                                     │
 │                                                             │
-│ Bài toán (1 câu): ________________________________________  │
-│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│ Bài toán (1 câu): Tự động phân loại, đánh giá mức độ khẩn cấp│
+│ và định tuyến khiếu nại kỹ thuật đa kênh của cư dân         │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [X] Vinhomes  │
 │                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
 │                                                             │
-│ Ai đang đau (Actor)? ______________________________________ │
+│ Ai đang đau (Actor): Nhân viên ban quản lý vận hành & Kỹ thuật │
 │                                                             │
 │ Workflow thủ công hiện tại (3-5 bước):                      │
-│   1. ___ ──> 2. ___ ──> 3. ___ ──> 4. ___                   │
+│   1. Cư dân gửi yêu cầu qua 4 kênh (App, Zalo, Email, Lễ tân)                │
+│    ──> 2. Nhân viên đọc thủ công từng đơn để hiểu nội dung 
+     ──> 3. Tra cứu hợp đồng bảo trì và phân loại độ khẩn cấp
+     ──> 4. Chuyển đơn thủ công cho đội kỹ thuật từng phân khu
+                                                        │
+│ Bước nào tốn thời gian/lỗi nhất? 2 & 3 (⏱ 30-45 phút/lượt)      │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Gom nhóm dữ liệu đa kênh │
+│ trích xuất thực thể, gán nhãn mức độ khẩn cấp & gợi ý kỹ thuật                                                            │
+│ Đo thành công bằng gì (Metric có số):  │
+│   Giảm thời gian phân loại đơn từ 35 mins ──> under 3 mins │
 │                                                             │
-│ Bước nào tốn thời gian/lỗi nhất? ___ (⏱ ___ phút/lượt)      │
-│ AI có thể nhảy vào hỗ trợ ở bước nào? _____________________ │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [X] Agent │
+└─────────────────────────────────────────────────────────────┘
+```
+```
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2                                     │
 │                                                             │
-│ Đo thành công bằng gì (Metric có số)? ______________________ │
-│   VD: "Giảm thời gian soạn phản hồi từ 10 min ──> under 2 min"│
+│ Bài toán (1 câu): Tự động kiểm tra tính hợp lệ chứng từ và│
+│ đối soát linh kiện bảo hành pin điện tại các xưởng dịch vụ.         │
+│ Công ty thành viên: [X] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
 │                                                             │
-│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [ ] Agent │
+│ Ai đang đau (Actor): Cố vấn dịch vụ xưởng & Bộ phận hậu mãi │
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1. Kỹ thuật viên lập biên bản thay thế linh kiện pin thủ công                │
+│    ──> 2. Chụp ảnh lỗi và xuất file Excel tổng hợp 
+     ──> 3. Gửi email đính kèm chứng từ về trung tâm hãng
+     ──> 4. Nhân viên hãng kiểm tra chéo với điều kiện bảo hành
+                                                        │
+│ Bước nào tốn thời gian/lỗi nhất? 2 & 4 (⏱ 60 phút/lượt)      │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? OCR đọc biên bản/ảnh lỗi │
+│ tự động đối chiếu chính sách bảo hành và phát hiện gian lận                                                            │
+│ Đo thành công bằng gì (Metric có số):  │
+│   Giảm thời gian phân loại đơn từ 5 days ──> under 4 hours │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [X] Agent │
+└─────────────────────────────────────────────────────────────┘
+```
+```
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3                                     │
+│                                                             │
+│ Bài toán (1 câu): Tóm tắt thông minh và chuẩn hóa hồ sơ bệnh│
+│ án điện tử (EHR) khi chuyển tuyến giữa các cơ sở Vinmec.         │
+│ Công ty thành viên: [] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│                     [X] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor): Bác sĩ lâm sàng & Nhân viên hành chính │
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1. Bác sĩ mở hệ thống EHR xem lại lịch sử khám bệnh cũ                │
+│    ──> 2. Sao chép thủ công các chỉ số XN, chẩn đoán hình ảnh 
+     ──> 3. Viết bản tóm tắt lâm sàng chuyển viện bằng văn bả
+     ──> 4. Gửi sang cơ sở nhận và gọi điện xác nhận ca bệnh
+                                                        │
+│ Bước nào tốn thời gian/lỗi nhất? 2 & 3 (⏱ 25 phút/ca)      │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Tự động trích xuất các │
+│ dữ liệu cốt lõi từ EHR và sinh bản tóm tắt chuẩn định dạng                                                            │
+│ Đo thành công bằng gì (Metric có số):  │
+│   Giảm thời gian phân loại đơn từ 25 mins ──> under 5 mins │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [X] LLM  [ ] Agent │
 └─────────────────────────────────────────────────────────────┘
 ```
 
