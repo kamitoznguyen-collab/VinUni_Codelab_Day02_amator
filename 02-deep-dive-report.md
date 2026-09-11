@@ -1,144 +1,32 @@
-# Deliverable Hoàn Chỉnh — Vin Smart Future (VinUni Canteen Use Case)
+# 📋 Báo Cáo Phân Tích Sâu (Deep-Dive Report) — Vin Smart Future
+## Dự Án: Ứng Dụng VinUni Smart Canteen App & Trợ Lý AI Gợi Ý Món Ăn Theo Thói Quen
 
-> **Báo cáo tổng hợp toàn diện từ Phase 1 đến Phase 6 theo chuẩn Rubric của Vin Smart Future.**  
-> * **Mảng hoạt động:** Đại học VinUni (Vingroup) — Dịch vụ Đời sống Sinh viên & Vận hành Canteen.  
-> * **Tên bài toán trọng tâm:** Tối ưu hóa luồng điều phối suất ăn & Đặt món thông minh tại Canteen VinUni (**Smart Canteen Co-pilot**).  
-> * **Mô hình AI chuẩn:** Google Gemini 2.5 Flash.
-
----
-
-## 🏛️ Bối cảnh: Tôi là ai?
-
-Tôi là **Kỹ sư AI Product** tại **Vin Smart Future** (Tập đoàn Vingroup), phụ trách mảng tối ưu hóa vận hành số cho khuôn viên Đại học VinUni tại khu đô thị Vinhomes Ocean Park. 
-
-VinUni hiện có hơn 1.500 sinh viên, giảng viên và chuyên gia quốc tế học tập, làm việc. Qua khảo sát thực địa tại Canteen trung tâm của trường vào khung giờ trưa (11h45 – 12h30), tôi nhận thấy sinh viên và cán bộ giảng viên đang gặp một sự ức chế rất lớn về việc **xếp hàng 2 chặng kéo dài 16–20 phút chỉ để nhận một bữa ăn trưa**. Điều này làm lãng phí nghiêm trọng thời gian nghỉ ngơi giữa ngày và gây thất thoát thực phẩm của nhà bếp. Dự án này được khởi xướng nhằm giải quyết triệt để điểm nghẽn vận hành trên.
+> **Môn học:** AI Product Scoping (Vin Smart Future — Lab 02)  
+> **Đơn vị phụ trách:** Vin Smart Future (Vingroup) — Chi nhánh VinUni Campus  
+> **Thành viên thực hiện:** Duy (Nhóm Kỹ sư AI Product Vin Smart Future)  
+> **Mảng hoạt động:** Giáo dục đại học & Dịch vụ đời sống sinh viên (VinUni Campus Life & Dining Services)
 
 ---
 
-# 🔍 Phase 1 — SCAN: Tìm kiếm cơ hội (Cá nhân)
+## 🏛️ 1. Bối cảnh & Lý do lựa chọn bài toán
 
-Sử dụng **4 Lenses** (Lặp lại, Tốn thời gian, AI-upgrade, Pain từ người khác) để quét qua các hoạt động vận hành tại VinUni và hệ sinh thái Vingroup:
+### 1.1. Bối cảnh vận hành tại VinUni
+Đại học VinUni tại khu đô thị Vinhomes Ocean Park quy tụ hơn 1.500 sinh viên, giảng viên và cán bộ nhân viên. Khu vực Canteen trung tâm là nơi phục vụ ăn trưa chính với khung giờ cao điểm tập trung từ **11h45 đến 12h30** mỗi ngày.
 
-| # | Đơn vị thành viên | Lens áp dụng | Mô tả ngắn bài toán & Điểm nghẽn |
-|---|-------------------|--------------|-----------------------------------|
-| 1 | **VinUni** (Canteen) | **Lặp lại & Tốn thời gian** | Quy trình mua vé 2 chặng: Thanh toán mua vé giấy chung (hoàn toàn KHÔNG ghi món) ──► Cầm vé sang quầy thức ăn xếp hàng lượt 2 ──► Đến lượt mới đứng ngắm khay và chọn đồ ăn trực tiếp. Sinh viên phân vân chọn món làm nghẽn quầy (18-20 phút/lượt), nhà bếp "nấu mù" không dự báo được số lượng suất từng món. |
-| 2 | **VinUni** (Thư viện) | **Pain từ người khác** | Tranh chấp và lãng phí phòng học nhóm (Discussion Pods): Tỷ lệ đặt chỗ ảo ("bỏ bom" no-show) lên tới 35%, sinh viên cần phòng thì hệ thống báo hết, thủ thư mất 15-20 phút/lần đi kiểm tra thực địa và can thiệp giải quyết. |
-| 3 | **VinUni** (Phòng Đào tạo) | **Lặp lại & AI-upgrade** | Nhân viên Registrar quá tải hàng trăm email/ticket xin đổi lịch thi, rút môn Add/Drop, xin cấp giấy chứng nhận sinh viên đầu kỳ. Mất 12 phút/email tra cứu quy chế lặp đi lặp lại, sinh viên chờ 3-5 ngày mới nhận phản hồi. |
-| 4 | **Xanh SM** (GSM) | **Tốn thời gian** | Điều phối viên xử lý thủ công các phản hồi khẩn cấp từ tài xế taxi điện khi pin báo dưới 5% hoặc tìm trạm sạc VinFast còn trụ trống, mất 15 phút tra cứu thủ công toạ độ và tình trạng trụ. |
-| 5 | **VinFast** (EV Service) | **AI-upgrade** | Khách hàng mô tả lỗi xe điện bằng tiếng Việt đời thường (ví dụ: *"đi qua gờ giảm tốc bánh trước kêu lục cục"*), nhân viên tiếp nhận mất nhiều thời gian hỏi đi hỏi lại trước khi phân loại đúng mã lỗi kỹ thuật vào xưởng. |
+Hiện tại, quy trình phục vụ tại canteen vận hành theo mô hình thủ công qua 2 chặng: **Xếp hàng thanh toán mua vé ăn chung (vé giấy chỉ có mệnh giá, hoàn toàn KHÔNG ghi món ăn cụ thể) ──► Cầm vé giấy sang quầy thức ăn xếp hàng lượt 2 ──► Đến lượt mới đứng ngắm khay và chọn đồ ăn trực tiếp ──► Nhân viên xé vé và xúc món**.
 
----
-
-# 🃏 Phase 2 — QUICK-ASSESS: 3 Thẻ Bài Toán Tiềm Năng (Cá nhân)
+### 1.2. Quyết định lựa chọn từ Phase 2 (Quick Problem Cards)
+Từ danh sách 3 thẻ bài toán cá nhân đã khảo sát tại `01-problem-scan.md` (Canteen, Thư viện Pods, Phòng Đào tạo Registrar), bài toán **Canteen VinUni (Card #1)** được lựa chọn để thực hiện Deep-Dive vì:
+* Tác động trực tiếp đến **100% sinh viên và giảng viên** hàng ngày.
+* Giải quyết ngay điểm bức xúc lớn nhất: sinh viên chỉ có 45 phút nghỉ trưa nhưng mất tới **16–20 phút** xếp hàng thanh toán và chờ chọn món tại khay.
+* Giải quyết thế bị động ("nấu mù") của nhà bếp, giảm thiểu 15–20% lượng thức ăn dư thừa mỗi ngày.
+* Dữ liệu đầu vào (thời khóa biểu lớp học trên Canvas, lịch thi, sĩ số sinh viên theo ngày) đã có sẵn trong hệ thống quản lý của trường.
 
 ---
 
-### 📌 Thẻ 1: VinUni Canteen — Tối ưu hóa điều phối suất ăn & quy trình order
-```text
-┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #1                                       │
-│                                                             │
-│ Bài toán: Mua vé giấy chung (không ghi món) rồi mới ra quầy │
-│ đứng chọn đồ ăn trực tiếp, gây ùn ứ kép tại Canteen VinUni. │
-│ Đơn vị thành viên: [x] VinUni (Dịch vụ Đời sống & Canteen)  │
-│                                                             │
-│ Ai đang đau? Sinh viên/Giảng viên (mất 20 min chờ),          │
-│ Thu ngân (quá tải thanh toán), Nhà bếp (lãng phí 18% đồ ăn)  │
-│                                                             │
-│ Workflow thủ công hiện tại (5 bước):                        │
-│   1. Xếp hàng quầy thu ngân -> 2. Thanh toán nhận vé chung  │
-│   (VÉ KHÔNG GHI MÓN) -> 3. Xếp hàng quầy thức ăn            │
-│   -> 4. Đứng chọn đồ ăn trực tiếp tại khay -> 5. Xé vé lấy đĩa│
-│                                                             │
-│ Bước nào tốn thời gian nhất? Bước 1, 3, 4 (⏱ 16-18 phút)   │
-│ AI có thể hỗ trợ ở bước nào? Bước 2 & 4 (Order & chọn món   │
-│ trước trên App) & Bước 5 (Dự báo số lượng từng món cho bếp) │
-│                                                             │
-│ Đo thành công bằng gì (Metric có số)?                        │
-│ Giảm thời gian chờ nhận cơm từ 18 phút ──> dưới 3 phút/lượt. │
-│ Tỷ lệ thức ăn dư thừa giảm từ 18% ──> dưới 5%.              │
-│                                                             │
-│ Quick Architecture: [x] LLM Feature + Rule Demand Predictor │
-└─────────────────────────────────────────────────────────────┘
-```
+## 🏗️ 2. Phân Tích Chuyên Sâu (DEEP-DIVE)
 
----
-
-### 📌 Thẻ 2: VinUni Thư Viện — Điều phối phòng thảo luận nhóm & xử lý No-show
-```text
-┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #2                                       │
-│                                                             │
-│ Bài toán: Sinh viên đặt phòng học nhóm trước nhưng không đến│
-│ (no-show 35%), gây lãng phí phòng và tạo tranh chấp chỗ.    │
-│ Đơn vị thành viên: [x] VinUni (Dịch vụ Thư viện)            │
-│                                                             │
-│ Ai đang đau? Sinh viên cần phòng học (bị báo ảo hết phòng), │
-│ Thủ thư (mất 20 phút đi giải quyết tranh chấp phòng trực tiếp)│
-│                                                             │
-│ Workflow thủ công hiện tại (4 bước):                        │
-│   1. Đặt phòng online -> 2. Đến nhận phòng (phát hiện lấn)   │
-│   -> 3. Đi gọi thủ thư can thiệp -> 4. Thủ thư tra cứu & mời ra│
-│                                                             │
-│ Bước nào tốn thời gian nhất? Bước 3-4 (⏱ 15 phút xử lý)     │
-│ AI có thể hỗ trợ ở bước nào? Bước 2-3 (Tự động quét phòng   │
-│ trống sau 10 min no-show & re-allocate ngay trên app)       │
-│                                                             │
-│ Đo thành công bằng gì (Metric có số)?                        │
-│ Tăng tỷ lệ sử dụng hiệu dụng phòng thảo luận từ 55% ──> 92%. │
-│ Thời gian giải quyết tranh chấp giảm từ 15 min ──> 1 min.    │
-│                                                             │
-│ Quick Architecture: [x] IoT Rule Engine + Smart Scheduler    │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-### 📌 Thẻ 3: VinUni Phòng Đào Tạo — Trợ lý giải đáp học vụ & thủ tục sinh viên
-```text
-┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #3                                       │
-│                                                             │
-│ Bài toán: Hàng trăm email hỏi đáp quy chế đào tạo, đổi môn  │
-│ Add/Drop đầu kỳ bị nghẽn, sinh viên chờ 3-5 ngày phản hồi.  │
-│ Đơn vị thành viên: [x] VinUni (Phòng Quản lý Đào tạo)       │
-│                                                             │
-│ Ai đang đau? Cán bộ đào tạo (gõ trả lời lặp lại),           │
-│ Sinh viên (lo lắng vì trễ deadline đăng ký học phần)        │
-│                                                             │
-│ Workflow thủ công hiện tại (4 bước):                        │
-│   1. Nhận email sinh viên -> 2. Tra cứu sổ tay quy chế      │
-│   -> 3. Mở phần mềm tra cứu điểm/tín chỉ -> 4. Viết email rep│
-│                                                             │
-│ Bước nào tốn thời gian nhất? Bước 2-4 (⏱ 12 phút/email)     │
-│ AI có thể hỗ trợ ở bước nào? Bước 2-4 (RAG tra cứu quy chế, │
-│ draft sẵn câu trả lời có tag [DRAFT_ONLY] cho cán bộ duyệt) │
-│                                                             │
-│ Đo thành công bằng gì (Metric có số)?                        │
-│ Rút ngắn thời gian phản hồi email từ 72 giờ ──> dưới 2 giờ. │
-│ Giảm 80% thời gian soạn thảo thủ công của cán bộ đào tạo.   │
-│                                                             │
-│ Quick Architecture: [x] LLM Feature (RAG + Co-pilot HITL)   │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-# 🗳️ Quyết định lựa chọn của nhóm:
-Nhóm quyết định chọn bài toán **"Card #1 — Tối ưu hóa điều phối suất ăn & quy trình order tại Canteen VinUni"** để thực hiện Deep-Dive.
-
-## Lý do lựa chọn và loại bỏ các thẻ khác:
-* **Card #2 (VinUni Thư viện):** Đòi hỏi phải lắp đặt cảm biến chuyển động/camera IoT tại từng buồng học, chi phí đầu tư phần cứng ban đầu cao và quy trình phê duyệt cơ sở vật chất kéo dài.
-* **Card #3 (VinUni Phòng Đào tạo):** Mặc dù giúp giảm tải email nhưng đây là bài toán nghiệp vụ văn phòng back-office, không tạo ra trải nghiệm chuyển đổi số tức thì và trực quan cho toàn thể sinh viên như bài toán Canteen.
-* **Card #1 (VinUni Canteen):** Chạm đến nhu cầu thiết yếu hàng ngày của 100% người trong trường, dữ liệu thời khóa biểu đã có sẵn trên Canvas/LMS, và giải quyết trực tiếp sự bức xúc giờ trưa của sinh viên.
-
----
-
-# 🏗️ Phase 3 — DEEP-DIVE (Nhóm)
-
-## 3.1. Current-State Workflow (Quy trình vận hành hiện tại)
-
-Quy trình 5 bước phục vụ bữa trưa thủ công tại Canteen VinUni:
+### 2.1. Quy trình vận hành hiện tại (Current-State Workflow)
 
 ```text
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
@@ -151,15 +39,15 @@ Quy trình 5 bước phục vụ bữa trưa thủ công tại Canteen VinUni:
 │ In: Tiền/thẻ SV │     │ In: Thu tiền    │     │ In: Cầm vé giấy │     │ In: Ngắm khay   │     │ In: Vé giấy     │
 │ Out: Tới lượt   │     │ Out: Vé chung   │     │ Out: Chờ tới tủ │     │ Out: Món đã chọn│     │ Out: Khay cơm   │
 └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
-🔴 = Điểm nghẽn nghiêm trọng (Bottlenecks)
-🔄 Handoffs: Sinh viên ──► Thu ngân (Thanh toán) ──► Nhân viên bếp (Chọn món & Giao khay).
+🔴 = Điểm nghẽn nghiêm trọng (Bottlenecks tại Bước 1, Bước 3, Bước 4)
+🔄 Handoffs: Sinh viên ──► Thu ngân (Thanh toán) ──► Nhân viên phục vụ bếp (Chọn món & Giao khay).
 ⚠️ ĐIỂM NGHẼN CỐT LÕI: Vì trên vé ăn KHÔNG ghi món, đến Bước 4 mỗi sinh viên phải đứng phân vân chọn từng món mặn/rau/canh, làm cả hàng dài phía sau bị tê liệt!
 ⏱ TỔNG THỜI GIAN VẬN HÀNH THỦ CÔNG: 16 - 20 phút / lượt ăn trưa.
 ```
 
 ---
 
-## 3.2. Problem Statement (6-field) — Vin Smart Future Standard
+### 2.2. Problem Statement (Tiêu chuẩn 6 trường — Vin Smart Future)
 
 | Trường thông tin | Nội dung chi tiết |
 | :--- | :--- |
@@ -168,13 +56,13 @@ Quy trình 5 bước phục vụ bữa trưa thủ công tại Canteen VinUni:
 | **3. Bottleneck** | **3 Điểm nghẽn liên hoàn (Triple Bottleneck):**<br>• **Nghẽn tại Bước 1:** Hàng trăm sinh viên dồn ứ trước 2 quầy thu ngân chỉ để thanh toán mua 1 tấm vé giấy mệnh giá chung.<br>• **Nghẽn tại Bước 4 (Trọng yếu nhất):** Do **trên vé ăn không ghi món gì**, sinh viên tới quầy thức ăn mới bắt đầu nhìn các khay, hỏi xem món nào còn/hết, phân vân chọn món (mất 1.5 - 2.5 phút/người). Toàn bộ dòng người phía sau phải đứng chờ người phía trước chọn đồ.<br>• **Nghẽn dự báo bếp:** Nhà bếp hoàn toàn bị động ("nấu mù") vì không biết sinh viên sẽ chọn món nào, dẫn đến món hot hết sớm gây thất vọng, món nguội dư thừa lãng phí. |
 | **4. Business Impact** | • **Thời gian nghỉ ngơi bị đánh cắp:** Giờ nghỉ trưa chỉ có 45–60 phút mà sinh viên mất tới **18–20 phút** chỉ để xếp hàng thanh toán và chờ chọn món.<br>• **Lãng phí thực phẩm & chi phí:** Nhà bếp lãng phí khoảng **15% - 20%** lượng thức ăn chuẩn bị dư thừa mỗi ngày do không thể biết trước xu hướng chọn món của sinh viên.<br>• **Áp lực đỉnh điểm:** Nhân viên phát cơm vừa phải trả lời giải thích từng món, vừa múc thức ăn liên tục trong áp lực giục giã từ hàng dài sinh viên đói bụng. |
 | **5. Success Metric** | 1. **Hiệu suất thời gian:** Giảm thời gian chờ đợi nhận suất ăn từ **18 phút ──► dưới 3 phút/người** (Xóa bỏ hoàn toàn bước đứng chọn món tại quầy).<br>2. **Tốc độ giải phóng hàng đợi:** Tăng năng lực phục vụ giờ cao điểm từ 120 suất/giờ ──► **400 suất/giờ**.<br>3. **Tiết kiệm chi phí thực phẩm:** Giảm tỷ lệ thức ăn dư thừa cuối ngày từ 18% ──► **dưới 5%** nhờ dự báo chính xác số lượng từng món cụ thể.<br>4. **Mức độ hài lòng (CSAT):** Đạt trên **92%** đánh giá 4-5 sao từ sinh viên/giảng viên. |
-| **6. Operational Boundary (Ranh giới an toàn)** | • **ĐƯỢC PHÉP:** Tự động đồng bộ lịch học từ Canvas/LMS để dự báo nhu cầu suất ăn; cho phép sinh viên **chọn món trước (Pre-order)** và gợi ý dinh dưỡng/calo trên App; sinh mã QR nhận diện đúng món đã chọn; cảnh báo bếp trưởng khi một món sắp chạm ngưỡng an toàn.<br>• **TUYỆT ĐỐI CẤM:** AI **không được tự ý trừ tiền** trong tài khoản thẻ sinh viên khi chưa có thao tác xác thực (FaceID/PIN/Click); AI **không được tự ý thay thế món ăn** đã chọn nếu chưa có sự đồng ý của sinh viên; không được đổi định lượng suất ăn nếu chưa có sự phê duyệt của Bếp trưởng (Bắt buộc Human-in-the-loop). |
+| **6. Operational Boundary (Ranh giới an toàn)** | • **ĐƯỢC PHÉP:** Tự động đồng bộ lịch học từ Canvas/LMS để dự báo nhu cầu suất ăn; cho phép sinh viên **chọn món trước (Pre-order) và thanh toán trực tuyến** nhận E-Ticket; gợi ý dinh dưỡng/calo trên App theo thói quen; sinh mã QR nhận diện đúng món đã chọn; cảnh báo bếp trưởng khi một món sắp chạm ngưỡng an toàn.<br>• **TUYỆT ĐỐI CẤM:** AI **không được tự ý trừ tiền** trong tài khoản thẻ sinh viên khi chưa có thao tác xác thực (FaceID/PIN/Click); AI **không được tự ý thay thế món ăn** đã chọn nếu chưa có sự đồng ý của sinh viên; không được đổi định lượng suất ăn nếu chưa có sự phê duyệt của Bếp trưởng (Bắt buộc Human-in-the-loop). |
 
 ---
 
-## 3.3. Future-State Flow & Phân Tích Mức Độ AI Fit
+### 2.3. Future-State Flow & Phân Tích Mức Độ AI Fit
 
-### A. Định hướng giải pháp: Ứng dụng Di Động "VinUni Smart Canteen App"
+#### A. Định hướng giải pháp: Ứng dụng Di Động "VinUni Smart Canteen App"
 Giải pháp chuyển đổi toàn diện quy trình phục vụ bữa trưa thông qua ứng dụng di động dành riêng cho cộng đồng VinUni với 3 tính năng cốt lõi:
 1. **Trợ lý AI gợi ý món ăn theo thói quen & dinh dưỡng (AI Habit & Preference Recommender):**
    * Phân tích lịch sử gọi món 14 ngày gần nhất, thói quen ăn uống (ăn mặn, thanh đạm, ăn chay ngày rằm/thứ Ba, eat-clean).
@@ -190,13 +78,13 @@ Giải pháp chuyển đổi toàn diện quy trình phục vụ bữa trưa th�
 
 ---
 
-### B. AI-Fit Matrix:
+#### B. AI-Fit Matrix:
 * **Lựa chọn kiến trúc:** **LLM Feature (Cá nhân hóa gợi ý thói quen & phân tích dinh dưỡng) + Rule-Based Transaction (Thanh toán ví điện tử an toàn) + Time-Series Forecasting (Dự báo nhu cầu nhà bếp)**.
 * **Lý do:** Đảm bảo tính linh hoạt, thấu hiểu ngôn ngữ tự nhiên và sở thích cá nhân của sinh viên, đồng thời giữ vững độ chuẩn xác 100% về giao dịch tài chính.
 
 ---
 
-### C. Bảng so sánh chi tiết: Quy trình Hiện tại (Before) vs Quy trình Tương lai với App (After)
+#### C. Bảng so sánh chi tiết: Quy trình Hiện tại (Before) vs Quy trình Tương lai với App (After)
 
 | Tiêu chí so sánh | Quy trình thủ công Hiện tại (Before) | Quy trình tương lai với App & AI (After) |
 | :--- | :--- | :--- |
@@ -208,7 +96,7 @@ Giải pháp chuyển đổi toàn diện quy trình phục vụ bữa trưa th�
 
 ---
 
-### D. Quy trình tương lai (Future-State Flowchart)
+#### D. Quy trình tương lai (Future-State Flowchart)
 
 ```text
 ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
@@ -237,13 +125,13 @@ Giải pháp chuyển đổi toàn diện quy trình phục vụ bữa trưa th�
 
 ---
 
-# 💻 Phase 4 — Prompt Prototype & Boundary Test
+## 💻 3. Prompt Prototype & Boundary Test
 
 Nhóm đã xây dựng file nguyên mẫu code [`starter-code/prompt_prototype.py`](starter-code/prompt_prototype.py) và chạy thử nghiệm bằng **Gemini 2.5 Flash** để kiểm tra ranh giới an toàn.
 
 ### Ranh giới an toàn (Operational Boundary) được kiểm chứng:
 1. **Quy tắc 1 (DRAFT ONLY):** Mọi đầu ra gợi ý điều phối BẮT BUỘC có tiền tố `[DRAFT_ONLY]` để ngăn chặn việc gửi thẳng cho người dùng mà không qua xét duyệt.
-2. **Quy tắc 2 (CRITICAL THRESHOLD):** Cảnh báo ngưỡng nguy cấp (ví dụ pin xe điện < 5% hoặc số lượng suất ăn vượt ngưỡng kho), AI không được tự ý thực hiện hành vi mạo hiểm mà phải trigger lệnh cứu hộ hoặc xin chỉ đạo trực tiếp: `{"action": "dispatch_mobile_charger", "reason": "..."}`.
+2. **Quy tắc 2 (CRITICAL THRESHOLD):** Cảnh báo ngưỡng nguy cấp (pin xe điện < 5% hoặc số lượng suất ăn vượt ngưỡng kho), AI không được tự ý thực hiện hành vi mạo hiểm mà phải trigger lệnh cứu hộ hoặc xin chỉ đạo trực tiếp: `{"action": "dispatch_mobile_charger", "reason": "..."}`.
 
 ### Kết quả thử nghiệm tấn công Prompt (Adversarial Testing):
 * Cả 2 test cases tấn công (cố tình ép bỏ qua thẻ `[DRAFT_ONLY]` và cố tình bắt chỉ đường trạm sạc xa khi pin < 5%) đều bị mô hình từ chối và thực thi đúng ranh giới an toàn.
@@ -251,9 +139,9 @@ Nhóm đã xây dựng file nguyên mẫu code [`starter-code/prompt_prototype.p
 
 ---
 
-# 🏁 Phase 5 — EVALUATE: Đánh Giá Khả Thi & Ra Quyết Định
+## 🏁 4. Đánh Giá Khả Thi & Ra Quyết Định (EVALUATE)
 
-### 5.1. AI Readiness Checklist
+### 4.1. AI Readiness Checklist
 
 | Tiêu chí sẵn sàng | Đánh giá | Bằng chứng thực tế |
 | :--- | :---: | :--- |
@@ -261,7 +149,7 @@ Nhóm đã xây dựng file nguyên mẫu code [`starter-code/prompt_prototype.p
 | **2. Rủi ro sai số trong tầm kiểm soát** | ✅ ĐẠT | Nếu AI dự báo lệch 5-10%, nhà bếp vẫn có kho nguyên liệu đệm; không gây nguy cơ mất an toàn thực phẩm hay vi phạm pháp lý. |
 | **3. Mức độ sẵn sàng của Stakeholders** | ✅ ĐẠT | Sinh viên và giảng viên VinUni 100% sử dụng smartphone, quen thuộc với công nghệ số; Ban Giám đốc Vận hành Campus mong muốn cải thiện chất lượng đời sống sinh viên. |
 
-### 5.2. Quyết định của Ban Giám Đốc Vin Smart Future
+### 4.2. Quyết định của Ban Giám Đốc Vin Smart Future
 
 > ### 🟢 QUYẾT ĐỊNH: **GO (Bắt đầu xây dựng Prototype)**
 
@@ -269,17 +157,3 @@ Nhóm đã xây dựng file nguyên mẫu code [`starter-code/prompt_prototype.p
 1. **Giá trị vận hành vượt trội:** Xóa bỏ hoàn toàn tình trạng xếp hàng 2 lượt và đứng phân vân chọn món tại quầy, rút ngắn thời gian nhận cơm xuống còn 30 giây/người, giảm 13% lãng phí thức ăn thừa.
 2. **Khả thi về kỹ thuật:** Kiến trúc đơn giản, an toàn, sử dụng API dữ liệu có sẵn của trường VinUni.
 3. **Lộ trình:** Triển khai thử nghiệm 1 quầy Fast-track trong 4 tuần trước khi áp dụng toàn diện.
-
----
-
-# 📝 Phase 6 — REFLECTION: Nhật Ký Tương Tác AI (Cá nhân)
-
-1. **AI đã giúp gì?**
-   * Giúp đào sâu tìm ra các điểm nghẽn thực tế tại khuôn viên VinUni.
-   * Chuyển hóa các nhận định cảm tính thành con số kỹ thuật (rút ngắn từ 18 phút xuống 3 phút, giảm lãng phí thức ăn từ 18% xuống dưới 5%).
-2. **AI đã ảo giác / trả lời sai ở đâu?**
-   * Ban đầu AI đề xuất xây dựng hệ thống cánh tay robot tự động chia cơm bằng Computer Vision 3D quá tốn kém và phi thực tế.
-   * AI đề xuất tự động trừ tiền ví của sinh viên khi đi qua cửa quét mà không cần xác nhận.
-3. **Cách khắc phục & ranh giới an toàn:**
-   * Kéo scope về mức tối giản: Rule-based cho thanh toán, LLM Feature cho việc gợi ý món ăn dinh dưỡng và dự báo định lượng cho nhà bếp.
-   * Bắt buộc có Human-in-the-loop (Bếp trưởng duyệt số suất, sinh viên chủ động xác thực thanh toán).
