@@ -1,49 +1,47 @@
-# 📝 Nhật Ký Tương Tác AI & Bài Học Phản Ánh (AI Log & Reflection)
-## Đơn vị: Vin Smart Future — Dự Án VinUni Smart Canteen Co-pilot
+# 📝 Phase 6 — REFLECTION: Nhật Ký Tương Tác AI & Bài Học Cá Nhân (Duy)
+## Đơn vị: Vin Smart Future — Dự Án VinUni Smart Canteen App
 
 ---
 
-## 🤖 1. Tổng Quan Quá Trình Sử Dụng AI Làm Cộng Sự (Thought-Partner)
+## 🤖 1. Bối Cảnh: Sử Dụng AI Làm Cộng Sự Tư Duy (Thought-Partner)
 
-Trong suốt quá trình thực hiện **Lab 02: AI Product Scoping**, nhóm kỹ sư Vin Smart Future đã sử dụng mô hình ngôn ngữ lớn (**Google Gemini 2.5 Flash / Claude**) như một người phản biện kỹ thuật, đóng vai trò đồng thời là:
-1. **Trưởng phòng Vận hành Canteen (Operations Director):** Để tìm ra các điểm nghẽn thực tế và con số thời gian lãng phí.
-2. **Kỹ sư Trưởng AI (Principal AI Architect):** Để phản biện xem bài toán có thực sự cần AI hay chỉ cần code Rule-based thông thường.
+Trong suốt buổi làm việc **Lab 02: AI Product Scoping**, tôi (**Duy**) đã trực tiếp làm việc cùng các mô hình ngôn ngữ lớn (LLM) để đóng vai trò đồng phản biện (devil's advocate) trong việc tìm kiếm và scoping bài toán vận hành tại Canteen Đại học VinUni.
 
 ---
 
-## 💡 2. AI Đã Giúp Gì Cho Nhóm? (What AI Did Well)
+## 💡 2. AI Đã Hỗ Trợ Tôi Như Thế Nào? (What AI Did Well)
 
-* **Brainstorming bài toán thực tế theo 4 Lenses:** Khi ban đầu nhóm chỉ nghĩ đến các bài toán chung chung của VinFast hay Xanh SM, AI đã hỗ trợ đào sâu vào hệ sinh thái giáo dục **VinUni**, chỉ ra điểm nghẽn nhức nhối về quy trình mua vé 2 chặng tại Canteen trong khung giờ cao điểm trưa (11h45 - 12h30).
-* **Định lượng hoá Success Metrics:** AI đã giúp nhóm chuyển đổi các mục tiêu mơ hồ (như *"làm canteen nhanh hơn"*) thành các con số kỹ thuật có thể đo lường và kiểm chứng:
-  * Rút ngắn thời gian chờ từ **18 phút xuống dưới 3 phút/lượt**.
-  * Cắt giảm lượng thức ăn dư thừa cuối ngày từ **18% xuống dưới 5%**.
-* **Xây dựng cấu trúc Operational Boundaries (Ranh giới an toàn):** AI giúp nhóm hình dung các tình huống rủi ro mà một hệ thống tự động có thể gặp phải (như tự trừ tiền tài khoản sinh viên hoặc đưa ra cảnh báo sai lệch về an toàn dinh dưỡng).
+1. **Bóc tách điểm nghẽn thực tế (Root Cause Analysis):** 
+   * Ban đầu tôi chỉ nhận thấy hiện tượng bề mặt là "sinh viên xếp hàng mua vé quá lâu". Khi thảo luận và yêu cầu AI phân tích luồng di chuyển, AI đã cùng tôi bóc tách ra điểm nghẽn cốt lõi nhất: Việc **vé ăn giấy hoàn toàn không ghi món** buộc sinh viên phải đứng phân vân chọn từng món mặn/rau/canh trực tiếp tại khay, làm tê liệt toàn bộ hàng đợi phía sau.
+2. **Định lượng hoá Success Metrics:**
+   * AI hỗ trợ tôi chuyển đổi mong muốn cải thiện chung chung thành các con số kỹ thuật cụ thể:
+     * Rút ngắn thời gian chờ nhận cơm từ **18 phút ──► dưới 3 phút/người** (tiết kiệm 83% thời gian).
+     * Tăng năng lực phục vụ giờ cao điểm từ 120 suất/giờ ──► **400 suất/giờ**.
+     * Cắt giảm thức ăn dư thừa của nhà bếp từ 18% ──► **dưới 5%**.
+3. **Định hình tính năng Ứng dụng Di Động:**
+   * AI gợi ý ý tưởng xây dựng tính năng **AI gợi ý món ăn theo thói quen (Habit-based Recommender)** kết hợp **Đặt món trước (Pre-ordering) và Mua vé thanh toán trực tuyến**, giúp giải quyết triệt để quy trình mua vé 2 chặng thủ công.
 
 ---
 
 ## ⚠️ 3. AI Đã Trả Lời Sai / Ảo Giác (Hallucination) Ở Đâu?
 
-Trong các lượt prompt đầu tiên, AI đã mắc một số sai lầm nghiêm trọng về tư duy thiết kế sản phẩm:
-1. **Lạm dụng công nghệ quá đà (Over-engineering):**
-   * *Sai sót của AI:* AI ban đầu đề xuất xây dựng một hệ thống **Autonomous Multi-Agent Swarm** kết hợp cánh tay robot tự động chia cơm và phân loại thức ăn bằng Computer Vision 3D.
-   * *Thực tế:* Giải pháp này cực kỳ đắt đỏ, không khả thi về mặt chi phí và rủi ro hỏng hóc cao trong môi trường canteen dầu mỡ.
-2. **Ảo giác về quy chế thanh toán:**
-   * *Sai sót của AI:* AI đề xuất tự động quét nhận diện khuôn mặt sinh viên đi qua cửa và tự động trừ tiền ví điện tử ngay lập tức mà không cần xác nhận.
-   * *Hậu quả:* Đây là vi phạm nghiêm trọng về an toàn tài chính và quyền riêng tư sinh viên nếu nhận diện nhầm người.
+1. **Ảo giác về độ phức tạp (Over-engineering):**
+   * Trong những lượt prompt đầu tiên, AI đã vẽ ra một giải pháp quá đao to búa lớn: lắp đặt hệ thống cánh tay robot tự động chia thức ăn bằng Computer Vision 3D tại canteen. Đây là giải pháp cực kỳ đắt đỏ, dễ hỏng hóc và hoàn toàn phi thực tế đối với một canteen trường đại học.
+2. **Vi phạm ranh giới an toàn tài chính (Safety Boundary Breach):**
+   * AI từng gợi ý tính năng "tự động nhận diện khuôn mặt sinh viên đi qua cửa canteen và tự động trừ tiền trong ví điện tử". Tôi đã nhận diện ngay đây là một rủi ro bảo mật nghiêm trọng có thể dẫn đến trừ tiền nhầm nếu nhận diện sai hoặc sinh viên chỉ ghé vào canteen mua chai nước.
 
 ---
 
-## 🛠️ 4. Nhóm Đã Tinh Chỉnh Prompt & Đặt Ranh Giới An Toàn Thế Nào?
+## 🛠️ 4. Tôi Đã Tinh Chỉnh Prompt & Đặt Ranh Giới An Toàn (Operational Boundary) Ra Sao?
 
-Để khắc phục các điểm yếu trên, nhóm đã thực hiện các bước điều chỉnh:
-* **Thu hẹp Scope (Problem First, AI Second):** Yêu cầu AI đóng vai trò một CFO khó tính để cắt giảm giải pháp xuống mức tối giản nhất: **Rule-based cho thanh toán + LLM Feature cho việc gợi ý món ăn dinh dưỡng & dự báo số lượng suất cho bếp trưởng**.
-* **Thiết lập ranh giới bắt buộc có người duyệt (Human-in-the-loop - HITL):**
-  * Buộc mọi lệnh dự báo suất ăn phải có tiền tố `[DRAFT_ONLY]` để Bếp trưởng kiểm tra và phê duyệt số lượng trước khi nấu.
-  * Sinh viên luôn phải chủ động bấm xác nhận thanh toán hoặc quét mã bảo mật trước khi tiền bị trừ.
-* **Cơ chế Fallback rõ ràng:** Thiết lập quy trình dự phòng: nếu hệ thống AI hay đường truyền gặp sự cố, canteen chuyển đổi ngay sang quầy POS quẹt thẻ sinh viên truyền thống trong vòng 10 giây.
+1. **Kéo AI về bài toán thực tế (Problem First, AI Second):**
+   * Tôi yêu cầu AI đóng vai trò một Giám đốc Tài chính (CFO) khắt khe, cắt giảm giải pháp xuống kiến trúc tối giản: Rule-based cho thanh toán an toàn, và LLM Feature cho việc cá nhân hóa thực đơn theo thói quen sinh viên.
+2. **Bắt buộc cơ chế Human-in-the-loop (HITL):**
+   * Tôi đặt ranh giới nghiêm ngặt: Mọi gợi ý món ăn và hóa đơn tạm tính phải có nhãn `[DRAFT_ONLY]`. Sinh viên BẮT BUỘC phải là người chủ động nhấn xác nhận thanh toán thì tiền mới được trừ và tạo mã QR E-Ticket.
+3. **Cơ chế Fallback an toàn:**
+   * Luôn duy trì 1 quầy quẹt thẻ sinh viên POS truyền thống đề phòng trường hợp mất mạng hoặc sinh viên hết pin điện thoại.
 
 ---
 
-## 🎓 5. Bài Học Cá Nhân (Key Takeaways)
-* *"AI không thay thế tư duy phản biện của kỹ sư sản phẩm."* AI đưa ra ý tưởng rất nhanh nhưng có xu hướng phóng đại độ phức tạp (Over-hyping AI).
-* Thành công của một dự án AI tại Vingroup không nằm ở việc dùng mô hình to bao nhiêu, mà nằm ở việc **vẽ ranh giới an toàn (Operational Boundary) đủ chặt chẽ** để hệ thống vận hành trơn tru và an toàn trong thực tế.
+## 🎓 5. Bài Học Cá Nhân Tâm Đắc Nhất
+> *"AI là một trợ lý brainstorm ý tưởng xuất sắc và đa chiều, nhưng kỹ sư AI Product phải là người nắm giữ tay lái, thiết lập ranh giới an toàn (Operational Boundary) và kiểm định tính khả thi trong thực tế."*
